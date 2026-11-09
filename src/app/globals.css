@@ -39,8 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --color-lime: #d5ff47;
-  --color-lime-2: #bcf122;
+  --color-lime: #ffffff;
+  --color-lime-2: #e5e5e5;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -59,8 +59,8 @@
   --card-foreground: #f4f7fb;
   --popover: rgba(18, 18, 18, .97);
   --popover-foreground: #f4f7fb;
-  --primary: #d5ff47;
-  --primary-foreground: #0b1118;
+  --primary: #ffffff;
+  --primary-foreground: #101010;
   --secondary: rgba(255, 255, 255, .05);
   --secondary-foreground: rgba(244, 247, 251, .72);
   --muted: rgba(255, 255, 255, .05);
@@ -70,8 +70,8 @@
   --destructive: #ff8080;
   --border: rgba(255, 255, 255, .08);
   --input: rgba(255, 255, 255, .08);
-  --ring: rgba(213, 255, 71, .4);
-  --chart-1: #d5ff47;
+  --ring: rgba(255, 255, 255, .36);
+  --chart-1: #ffffff;
   --chart-2: #8ef4c5;
   --chart-3: #ffd56a;
   --chart-4: #ff8080;
@@ -79,12 +79,12 @@
   --radius: 0.875rem;
   --sidebar: #111111;
   --sidebar-foreground: #f4f7fb;
-  --sidebar-primary: #d5ff47;
-  --sidebar-primary-foreground: #0b1118;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #101010;
   --sidebar-accent: rgba(255, 255, 255, .07);
   --sidebar-accent-foreground: #f4f7fb;
   --sidebar-border: rgba(255, 255, 255, .08);
-  --sidebar-ring: rgba(213, 255, 71, .4);
+  --sidebar-ring: rgba(255, 255, 255, .36);
 }
 
 @layer base {
@@ -97,7 +97,7 @@
     font-family: var(--font-manrope), sans-serif;
     background:
       radial-gradient(circle at top left, rgba(255, 255, 255, .06), transparent 24%),
-      radial-gradient(circle at 88% 78%, rgba(213, 255, 71, .08), transparent 18%),
+      radial-gradient(circle at 88% 78%, rgba(255, 255, 255, .045), transparent 18%),
       radial-gradient(circle at 82% 22%, rgba(255, 255, 255, .04), transparent 16%),
       linear-gradient(180deg, #040404 0%, #090909 34%, #060606 100%);
     overflow: hidden;
