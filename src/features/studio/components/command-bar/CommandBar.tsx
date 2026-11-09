@@ -34,6 +34,7 @@ import { VideoControlsPill } from "@/features/studio/components/command-bar/Vide
 import { AttachmentButton } from "@/features/studio/components/command-bar/AttachmentButton";
 import { ImageAttachmentButton } from "@/features/studio/components/command-bar/ImageAttachmentButton";
 import { ReferencePreview } from "@/features/studio/components/ReferencePreview";
+import { ProductionBriefPanel } from "./ProductionBriefPanel";
 import { useModelCopy } from "@/i18n/use-model-copy";
 
 const schema = z.object({ prompt: z.string().max(65536) });
@@ -419,6 +420,41 @@ export function CommandBar({ mode, onModeChange, suggestion, incoming, onPromptS
         : imageModel?.aspect_ratio ? (imageModel.aspect_ratio.options ?? []).map(([label, value]) => [value, label]) : [];
     const imageResolutions: SizeUiResolution[] = imageModel?.size_ui?.resolutions
         ?? (imageModel?.resolution_variant ? imageModel.resolution_variant.options?.map(id => ({ id, base: 0 })) : []) ?? [];
+    // WEDO: the Key Visual is mapped to an existing provider media slot.
+    // Never send an unsupported field to the generation API.
+    const keyVisualSlot = mode === "image"
+        ? imageUploadSlots.find(slot => slot.kind === "image")
+        : videoRoleDescriptors.find(slot => slot.kind === "image" || slot.kind === "video");
+    const keyVisualAccepted = keyVisualSlot
+        ? (keyVisualSlot.kind === "video" ? "video/*" : "image/*") : null;
+    const keyVisualName = mode === "image"
+        ? (keyVisualSlot ? slotFiles[keyVisualSlot.id]?.[0]?.name : undefined)
+        : attachments.find(item => item.roleId === keyVisualSlot?.id)?.file?.name;
+    const addKeyVisual = (file: File) => {
+        if (!keyVisualSlot || !file.type.startsWith(keyVisualSlot.kind + "/")) return;
+        if (mode === "image") {
+            setSlotFiles(current => ({ ...current, [keyVisualSlot.id]: [file] }));
+        } else {
+            const attachment = fileToAttachment(keyVisualSlot.id, file, keyVisualSlot.kind);
+            setAttachments(current => [...current.filter(item => item.roleId !== keyVisualSlot.id), attachment]);
+        }
+    };
+    const briefAspects = mode === "image"
+        ? imageRatios.map(([value, label]) => ({ value, label }))
+        : (videoModel ? (getAspectRatios(videoModel, videoVariantId) ?? [])
+            .map(([label, value]) => ({ label, value })) : []);
+    const briefResolutions = mode === "image"
+        ? imageResolutions.map(item => ({ value: item.id, label: item.id }))
+        : (videoModel?.resolution_variant?.options ?? [])
+            .map(id => ({ value: id, label: id }));
+    const chooseBriefResolution = (id: string) => {
+        if (mode === "image") { setSizeResolution(id); return; }
+        if (!videoModel) return;
+        const defaults = defaultSettings(videoModel, id);
+        setVideoVariantId(id);
+        setVideoSettings(current => ({ ...current, duration: defaults.duration,
+            aspectRatio: defaults.aspectRatio, size: defaults.size }));
+    };
     const activeModel = mode === "image" ? imageModel : videoModel;
     const activeCatalog = mode === "image" ? imageCatalog : videoCatalog;
     const modelUnavailable = !activeModel || activeCatalog.isLoading || Boolean(activeCatalog.error);
@@ -501,6 +537,24 @@ export function CommandBar({ mode, onModeChange, suggestion, incoming, onPromptS
                 onSubmit={(event) => { void handleSubmit(onSubmit, () => setApiError("ERR_PROMPT_TOO_LONG"))(event); }}
                 className="mx-auto grid w-full max-w-[70rem] grid-cols-1 items-stretch gap-2 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-3"
             >
+                <div className="min-w-0 sm:col-span-2">
+                    <ProductionBriefPanel
+                        mode={mode}
+                        keyVisualName={keyVisualName}
+                        keyVisualAccepted={keyVisualAccepted}
+                        onKeyVisual={addKeyVisual}
+                        aspect={mode === "image" ? sizeAspect : videoSettings.aspectRatio}
+                        aspects={briefAspects}
+                        onAspectChange={value => mode === "image" ? setSizeAspect(value)
+                            : setVideoSettings(current => ({ ...current, aspectRatio: value }))}
+                        resolution={mode === "image" ? sizeResolution : videoVariantId}
+                        resolutions={briefResolutions}
+                        onResolutionChange={chooseBriefResolution}
+                        duration={videoSettings.duration}
+                        durations={videoModel ? getDurations(videoModel, videoVariantId) : []}
+                        onDurationChange={value => setVideoSettings(current => ({ ...current, duration: value }))}
+                    />
+                </div>
                 {/* Mode rail */}
                 <div
                     role="group" aria-label={tCommand("mode")}
