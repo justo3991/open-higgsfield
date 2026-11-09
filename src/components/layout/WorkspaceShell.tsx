@@ -33,9 +33,9 @@ export function WorkspaceShell({ children }: { children: React.ReactNode }) {
             <a href="#workspace-content" className="sr-only z-[100] rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground focus:not-sr-only focus:absolute focus:left-3 focus:top-3">{t("skip")}</a>
             <header ref={header} data-workspace-header className="relative shrink-0 border-b border-white/[.06] bg-[#0b0c0d]">
                 <div className="flex h-12 items-center gap-1.5 px-2 sm:gap-3 sm:px-4">
-                    <Link href={`/${locale}`} aria-label={t("home")} className="flex shrink-0 items-center gap-2 rounded-lg">
-                        <Image src="/icon.svg" width={28} height={28} alt="" className="size-7" priority />
-                        <span className="hidden text-sm font-semibold tracking-tight text-white xl:block">Open<span className="text-primary">Higgsfield</span></span>
+                    <Link href={`/${locale}`} aria-label="WEDO Creative Studio" className="flex shrink-0 items-center gap-2 rounded-lg">
+                        <Image src="/icon.svg" width={28} height={28} alt="GRUPO WEDO" className="size-7" priority />
+                        <span className="hidden text-sm font-semibold tracking-tight text-white xl:block">WEDO <span className="font-normal text-white/70">Creative Studio</span></span>
                     </Link>
                     <nav aria-label={t("navigation")} className="flex shrink-0 gap-0.5 rounded-xl bg-white/[.04] p-0.5">
                         {destinations.map(({ label, href, icon: Icon, active }) => <Link key={href} href={href} aria-current={active ? "page" : undefined} title={label} className={`flex h-8 min-w-9 items-center justify-center gap-1.5 rounded-[10px] px-2 text-xs font-semibold transition-colors sm:px-3 ${active ? "bg-white/[.1] text-white" : "text-muted-foreground hover:bg-white/[.05] hover:text-white"}`}>

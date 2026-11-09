@@ -28,18 +28,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     if (!hasLocale(locales, locale)) notFound();
     const t = await getTranslations({ locale, namespace: "metadata" });
     return {
-        metadataBase: new URL("https://openhiggs.techbe.me"),
-        title: { default: t("title"), template: "%s | Open-Higgsfield" },
+        metadataBase: new URL("https://wedo-creative-studio.vercel.app"),
+        title: { default: "WEDO Creative Studio", template: "%s | WEDO Creative Studio" },
         description: t("description"), keywords: t("keywords").split(","),
-        authors: [{ name: "TechBe", url: "https://techbe.me" }], creator: "TechBe", applicationName: "Open-Higgsfield",
+        authors: [{ name: "GRUPO WEDO" }], creator: "GRUPO WEDO", applicationName: "WEDO Creative Studio",
         alternates: { canonical: `/${locale}`, languages: Object.fromEntries(locales.map(code => [code, `/${code}`])) },
         manifest: `/${locale}/manifest.webmanifest`,
         openGraph: {
-            type: "website", url: `/${locale}`, siteName: "Open-Higgsfield", title: t("title"), description: t("socialDescription"),
+            type: "website", url: `/${locale}`, siteName: "WEDO Creative Studio", title: t("title"), description: t("socialDescription"),
             locale: openGraphLocales[locale], alternateLocale: locales.filter(code => code !== locale).map(code => openGraphLocales[code]),
-            images: [{ url: "/og-image.png", width: 1200, height: 630, alt: t("imageAlt") }],
+            images: [{ url: "/wedo-og.svg", width: 1200, height: 630, alt: t("imageAlt") }],
         },
-        twitter: { card: "summary_large_image", title: t("title"), description: t("socialDescription"), images: ["/og-image.png"] },
+        twitter: { card: "summary_large_image", title: t("title"), description: t("socialDescription"), images: ["/wedo-og.svg"] },
         icons: { icon: "/icon.svg" },
     };
 }

@@ -884,9 +884,10 @@
     "studio": "Studio",
     "providers": "Providers",
     "navigation": "Workspace navigation",
-    "home": "OpenHiggsfield home",
+    "home": "WEDO Creative Studio",
     "language": "Change language",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "appName": "WEDO Creative Studio"
   },
   "providers": {
     "title": "Your creative connections",
@@ -1056,11 +1057,11 @@
     "es": "Español"
   },
   "metadata": {
-    "title": "Open-Higgsfield - Open-source AI image and video studio",
+    "title": "WEDO Creative Studio — AI image and video studio",
     "description": "Create AI images and videos with Magnific, Gemini, Vertex AI, Vercel AI Gateway and your own provider accounts.",
     "socialDescription": "Generate, edit and upscale images and videos in one free, self-hostable studio.",
-    "appName": "Open-Higgsfield - AI Image & Video Studio",
-    "imageAlt": "Open-Higgsfield image and video creation studio",
+    "appName": "WEDO Creative Studio",
+    "imageAlt": "WEDO Creative Studio — GRUPO WEDO",
     "keywords": "AI image generator,AI video generator,open-source AI studio,Higgsfield alternative,Open-Higgsfield,Gemini,Veo,Vertex AI,Vercel AI Gateway,Magnific"
   },
   "errorPages": {

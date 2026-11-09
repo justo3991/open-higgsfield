@@ -1,5 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Open-Higgsfield logo">
-  <rect width="64" height="64" rx="18" fill="#0a0a0a"/>
-  <path d="M14 17h10v12h16V17h10v30H40V37H24v10H14z" fill="#d5ff47"/>
-  <circle cx="51" cy="50" r="5" fill="#f4f7fb"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280" role="img" aria-label="GRUPO WEDO — símbolo">
+<rect width="320" height="280" rx="56" fill="#0B0C0D"/>
+<g fill="#FFFFFF">
+<circle cx="160" cy="27" r="14"/><circle cx="80" cy="33" r="10"/><circle cx="240" cy="33" r="10"/>
+<circle cx="33" cy="82" r="10"/><circle cx="80" cy="81" r="14"/><circle cx="160" cy="75" r="17"/><circle cx="240" cy="81" r="14"/><circle cx="287" cy="82" r="10"/>
+<circle cx="33" cy="134" r="14"/><circle cx="80" cy="134" r="17"/><circle cx="160" cy="134" r="33"/><circle cx="240" cy="134" r="17"/><circle cx="287" cy="134" r="14"/>
+<circle cx="33" cy="187" r="10"/><circle cx="80" cy="187" r="14"/><circle cx="160" cy="192" r="17"/><circle cx="240" cy="187" r="14"/><circle cx="287" cy="187" r="10"/>
+<circle cx="80" cy="239" r="10"/><circle cx="160" cy="246" r="14"/><circle cx="240" cy="239" r="10"/>
+</g></svg>
