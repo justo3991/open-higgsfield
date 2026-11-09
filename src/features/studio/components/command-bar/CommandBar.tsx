@@ -445,8 +445,8 @@ export function CommandBar({ mode, onModeChange, suggestion, incoming, onPromptS
             .map(([label, value]) => ({ label, value })) : []);
     const briefResolutions = mode === "image"
         ? imageResolutions.map(item => ({ value: item.id, label: item.id }))
-        : (videoModel?.resolution_variant?.options ?? [])
-            .map(id => ({ value: id, label: id }));
+        : (videoModel && videoModel.resolution_variant ? (videoModel.resolution_variant.options ?? []) : [])
+            .map((id: string) => ({ value: id, label: id }));
     const chooseBriefResolution = (id: string) => {
         if (mode === "image") { setSizeResolution(id); return; }
         if (!videoModel) return;
