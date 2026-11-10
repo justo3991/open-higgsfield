@@ -1,0 +1,9 @@
+"use strict";
+const menuToggle=document.querySelector("#menu-toggle");
+const mobileMenu=document.querySelector("#mobile-menu");
+menuToggle?.addEventListener("click",()=>{const opened=mobileMenu.classList.toggle("open");menuToggle.setAttribute("aria-expanded",String(opened));menuToggle.textContent=opened?"✕":"☰";});
+mobileMenu?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{mobileMenu.classList.remove("open");menuToggle?.setAttribute("aria-expanded","false");if(menuToggle)menuToggle.textContent="☰";}));
+document.querySelector("#year").textContent=String(new Date().getFullYear());
+let framePending=false;
+window.addEventListener("scroll",()=>{if(framePending)return;framePending=true;requestAnimationFrame(()=>{const doc=document.documentElement;const size=doc.scrollHeight-doc.clientHeight;document.querySelector("#progress").style.width=(size>0?Math.min(100,Math.max(0,100*doc.scrollTop/size)):0)+"%";framePending=false;});},{passive:true});
+document.querySelector("#lead-form")?.addEventListener("submit",(event)=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const data=new FormData(form);const name=String(data.get("nome")||"").trim();const email=String(data.get("email")||"").trim();const company=String(data.get("empresa")||"").trim();const challenge=String(data.get("desafio")||"").trim();const context=String(data.get("contexto")||"").trim();const subject="Pedido de diagnóstico estratégico — "+company;const body=["Nome: "+name,"E-mail: "+email,"Empresa: "+company,"Desafio: "+challenge,"Contexto: "+context].join("\n");document.querySelector("#form-feedback").textContent="O pedido foi preparado. Confirme o envio no seu programa de e-mail.";window.location.href="mailto:geral@wedobrand.ao?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);});
